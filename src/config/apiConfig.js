@@ -1,0 +1,1 @@
+export const imgbbAPI = `https://api.imgbb.com/1/upload?key=cbeb00695aaf3359736a14ee0cbd5d56`
