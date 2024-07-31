@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DashboardHeading from "../dashboard/DashboardHeading";
 import UserTable from "./UserTable";
 import Button from "../../components/button/Button";
@@ -7,7 +7,11 @@ import { userRole } from "../../utils/constants";
 
 const UserManage = () => {
   const { userInfo } = useUserStore(state => state);
-  ;
+  
+  useEffect(() => {
+    document.title = "Monkey Blogging - Manage User"
+  }, [])
+
   if (userInfo?.role !== userRole.ADMIN) {
     return null;
   }

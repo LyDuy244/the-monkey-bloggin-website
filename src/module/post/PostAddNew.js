@@ -36,7 +36,7 @@ const PostAddNew = () => {
   const { userInfo } = useUserStore(state => state);
   ;
   const { control, watch, setValue, handleSubmit, getValues, reset, formState: {
-    isSubmitting, errors, isValid
+    isSubmitting, errors
   } } = useForm({
     mode: onchange,
     defaultValues: {

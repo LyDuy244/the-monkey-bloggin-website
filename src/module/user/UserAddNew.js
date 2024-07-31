@@ -99,6 +99,10 @@ const UserAddNew = () => {
       })
     }
   }, [errors])
+  useEffect(() => {
+    document.title = "Monkey Blogging - Add new user"
+  }, [])
+
   if (userInfo?.role !== userRole.ADMIN) {
     return null;
   }

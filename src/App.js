@@ -13,6 +13,7 @@ const DashboardPage = lazy(() => import("./pages/DashboardPage"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 const SignInPage = lazy(() => import("./pages/SignInPage"));
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
+const BlogPage= lazy(() => import("./pages/BlogPage"));
 const DashboardLayout = lazy(() => import("./module/dashboard/DashboardLayout"));
 const PostManage = lazy(() => import("./module/post/PostManage"));
 const PostAddNew = lazy(() => import("./module/post/PostAddNew"));
@@ -49,6 +50,7 @@ function App() {
         <Route path="/" element={<HomePage></HomePage>}></Route>
         <Route path="/signup" element={<SignupPage></SignupPage>}></Route>
         <Route path="/signin" element={<SignInPage></SignInPage>}></Route>
+        <Route path="/blog" element={<BlogPage></BlogPage>}></Route>
         <Route
           path="/:slug"
           element={<PostDetailPage></PostDetailPage>}

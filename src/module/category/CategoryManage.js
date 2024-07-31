@@ -8,14 +8,16 @@ import ActionDelete from "../../components/action/ActionDelete";
 import Button from "../../components/button/Button";
 import { collection, deleteDoc, doc, getDocs, limit, onSnapshot, query, startAfter, where } from "firebase/firestore";
 import { db } from "../../firebase-app/firebase-config";
-import { categoryStatus } from "../../utils/constants";
+import { categoryStatus, userRole } from "../../utils/constants";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useDebounce } from "@uidotdev/usehooks";
+import { useUserStore } from "../../zustand/newsStore";
 
 const CATEGORY_PER_PAGE = 1;
 
 const CategoryManage = () => {
+    const { userInfo } = useUserStore(state => state)
     const [categoryList, setCategoryList] = useState([]);
     const navigate = useNavigate();
     const [filter, setFilter] = useState("")
@@ -103,7 +105,12 @@ const CategoryManage = () => {
         const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length - 1];
         setLastDoc(lastVisible);
     }
-
+    useEffect(() => {
+        document.title = "Monkey Blogging - Manage Category"
+    }, [])
+    if (userInfo?.role !== userRole.ADMIN) {
+        return null;
+    }
     return (
         <div>
             <DashboardHeading title="Categories" desc="Manage your category">

@@ -1,34 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/layout/Layout';
-import { useParams } from 'react-router-dom';
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { db } from '../firebase-app/firebase-config';
+import { postStatus } from '../utils/constants';
 import Heading from '../components/layout/Heading';
 import PostItem from '../module/post/PostItem';
 
-const CategoryPage = () => {
-    const { slug } = useParams();
-    const [category, setCategory] = useState({});
+const BlogPage = () => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        if (!slug) return;
-        async function fetchUserData() {
-            const colRef = query(collection(db, "categories"), where("slug", "==", slug));
-            onSnapshot(colRef, snapShot => {
-                snapShot.forEach(doc => {
-                    doc.data() && setCategory({
-                        id: doc.id,
-                        ...doc.data()
-                    });
-                })
-            })
-        }
-        fetchUserData();
-    }, [slug])
-    useEffect(() => {
-        if (!category?.id) return;
         async function fetchPosts() {
-            const colRef = query(collection(db, 'posts'), where("categoryId", "==", category?.id))
+            const colRef = query(collection(db, 'posts'), where("status", "==", postStatus.APPROVE))
             onSnapshot(colRef, snapShot => {
                 const results = []
                 snapShot.forEach(doc => {
@@ -42,20 +24,20 @@ const CategoryPage = () => {
         }
 
         fetchPosts()
-    }, [category?.id])
+    }, [])
     useEffect(() => {
-        document.title = "Category Page"
+        document.title = "Blog Page"
       }, [])
     
     if (posts.length <= 0) return null;
-
     return (
         <Layout>
-            <div className="container">
+             <div className="container">
                 <div className="pt-10"></div>
-                <Heading>Danh mục các bài viết: {category?.name}</Heading>
+                <Heading>Danh sách các bài viết</Heading>
                 <div className="grid-layout grid-layout--primary">
                     {
+                        posts.length > 0 &&
                         posts.map(item => (
                             <PostItem key={item.id} data={item}></PostItem>
                         ))
@@ -66,4 +48,4 @@ const CategoryPage = () => {
     );
 };
 
-export default CategoryPage;
+export default BlogPage;

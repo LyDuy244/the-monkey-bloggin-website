@@ -106,9 +106,16 @@ const UserUpdate = () => {
             })
         }
     }, [errors])
+
+    useEffect(() => {
+        document.title = "Monkey Blogging - User Update"
+    }, [])
+
+
     if (userInfo?.role !== userRole.ADMIN) {
         return null;
     }
+
     if (!id) return null;
     return (
         <div>

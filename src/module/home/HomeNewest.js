@@ -4,7 +4,7 @@ import styled from "styled-components";
 import PostNewestLarge from "../post/PostNewestLarge";
 import PostNewestItem from "../post/PostNewestItem";
 import PostItem from "../post/PostItem";
-import { collection, limit, onSnapshot, query, where } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../../firebase-app/firebase-config";
 import { Swiper, SwiperSlide } from "swiper/react";
 

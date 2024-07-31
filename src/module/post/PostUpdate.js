@@ -159,6 +159,11 @@ const PostUpdate = () => {
 
   }
 
+  useEffect(() => {
+    document.title = "Monkey Blogging - Post update"
+  }, [])
+
+
   const module = useMemo(() => (
     {
       toolbar: [

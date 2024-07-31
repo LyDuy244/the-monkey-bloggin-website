@@ -15,11 +15,6 @@ const menuLinks = [
         url: "/blog",
         title: "Blog"
     },
-    {
-        id: 3,
-        url: "/contact",
-        title: "Contact"
-    },
 ]
 
 const HeaderStyles = styled.div`

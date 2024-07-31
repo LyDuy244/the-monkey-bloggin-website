@@ -6,7 +6,7 @@ import { Label } from "../../components/label";
 import Input from "../../components/input/Input";
 import FieldCheckboxes from "../../components/field/FieldCheckboxes";
 import Radio from "../../components/checkbox/Radio";
-import { categoryStatus } from "../../utils/constants";
+import { categoryStatus, userRole } from "../../utils/constants";
 import Button from "../../components/button/Button";
 import { useForm } from "react-hook-form";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
@@ -15,12 +15,14 @@ import slugify from "slugify";
 import { toast } from "react-toastify";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup"
+import { useUserStore } from "../../zustand/newsStore";
 
 const schema = yup.object({
   name: yup.string().required("Please enter your category name"),
 });
 
 const CategoryUpdate = () => {
+  const { userInfo } = useUserStore(state => state)
   const { id } = useParams();
   const { control, reset, watch, handleSubmit, formState: { isSubmitting, errors } } = useForm({
     mode: onchange,
@@ -64,7 +66,12 @@ const CategoryUpdate = () => {
       })
     }
   }, [errors])
-  if (!id) return null;
+  useEffect(() => {
+    document.title = "Monkey Blogging - Update Category"
+  }, [])
+  if (userInfo?.role !== userRole.ADMIN || !id) {
+    return null;
+  }
   return <div>
     <DashboardHeading title="Update Category" desc={`Update your category id: ${id}`}></DashboardHeading>
     <form onSubmit={handleSubmit(handleUpdateCategory)} autoComplete="off">

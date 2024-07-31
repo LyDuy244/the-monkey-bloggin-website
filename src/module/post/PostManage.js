@@ -93,6 +93,10 @@ const PostManage = () => {
     setFilter(e.target.value)
   }
 
+  useEffect(() => {
+    document.title = "Monkey Blogging - Manage post"
+  }, [])
+
   return (
     <div>
       <DashboardHeading
@@ -135,7 +139,7 @@ const PostManage = () => {
       <div className="mt-10 text-center">
         {/* <Pagination></Pagination> */}
         {
-          postList && total >= postList.length &&
+          postList && postList.length > 0 && total >= postList.length &&
           <Button onClick={handleLoadMorePost} kind="ghost" className="mx-auto w-[200px]">
             Load more
           </Button>

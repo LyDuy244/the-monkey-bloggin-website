@@ -9,16 +9,18 @@ import Radio from "../../components/checkbox/Radio";
 import Button from "../../components/button/Button";
 import FieldCheckboxes from "../../components/field/FieldCheckboxes";
 import slugify from "slugify";
-import { categoryStatus } from "../../utils/constants";
+import { categoryStatus, userRole } from "../../utils/constants";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase-app/firebase-config";
 import { toast } from "react-toastify";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup"
+import { useUserStore } from "../../zustand/newsStore";
 const schema = yup.object({
   name: yup.string().required("Please enter your category name"),
 });
 const CategoryAddNew = () => {
+  const {userInfo} = useUserStore(state => state)
   const {
     control,
     watch,
@@ -72,7 +74,14 @@ const CategoryAddNew = () => {
       })
     }
   }, [errors])
+  useEffect(() => {
+    document.title = "Monkey Blogging - Add new Category"
+  }, [])
+
   const watchStatus = watch("status")
+  if (userInfo?.role !== userRole.ADMIN) {
+    return null;
+  }
   return (
     <div>
       <DashboardHeading

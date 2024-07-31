@@ -76,7 +76,7 @@ const UserProfile = () => {
 
   const handleUpdateProfile = async (values) => {
     if (!isValid) return;
-
+    console.log(getValues("image_name"))
     try {
       const colRef = doc(db, "users", userInfo?.uid);
       await updateDoc(colRef, {
@@ -90,7 +90,8 @@ const UserProfile = () => {
         role: Number(values.role),
         description: values.description,
         createdAt: serverTimestamp(),
-        avatar: image
+        avatar: image,
+        image_name: values.image_name
       })
       toast.success("Update profile successfully")
     } catch (error) {
@@ -107,6 +108,10 @@ const UserProfile = () => {
       })
     }
   }, [errors])
+  useEffect(() => {
+    document.title = "User Profile"
+  }, [])
+
   if (!userInfo) return null;
   return (
     <div>

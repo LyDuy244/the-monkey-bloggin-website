@@ -113,6 +113,9 @@ const PostDetailPage = () => {
     updateTotalView();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [post.id])
+  useEffect(() => {
+    document.title = "Monkey Blogging"
+  }, [])
 
   if (!slug) return <PageNotFound></PageNotFound>;
   if (!post?.id) return null;
