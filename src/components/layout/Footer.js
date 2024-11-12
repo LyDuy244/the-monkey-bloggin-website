@@ -186,51 +186,51 @@ margin-top: 40px;
 const Footer = () => {
     return (
         <FooterStyles>
-            <footer class="footer-distributed">
+            <footer className="footer-distributed">
 
-                <div class="footer-left">
+                <div className="footer-left">
 
                     <h3>Monkey Blogging<span><img srcSet="./logo.png 2x" className='w-10 h-10 inline-block ml-3' alt="" /></span></h3>
 
-                    <p class="footer-links">
-                        <Link to="/" class="link-1">Home</Link>
+                    <p className="footer-links">
+                        <Link to="/" className="link-1">Home</Link>
                         <Link to="/blog">Blog</Link>
                     </p>
 
-                    <p class="footer-company-name text-primary">Ly Nguyen Ngoc Duy © 2024</p>
+                    <p className="footer-company-name text-primary">Ly Nguyen Ngoc Duy © 2024</p>
                 </div>
 
-                <div class="footer-center">
+                <div className="footer-center">
 
                     <div>
-                        <i class="fa fa-map-marker"></i>
+                        <i className="fa fa-map-marker"></i>
                         <p><span>425 Nguyen Duy</span> Quan 8, Ho Chi Minh</p>
                     </div>
 
                     <div>
-                        <i class="fa fa-phone"></i>
+                        <i className="fa fa-phone"></i>
                         <p>+028.3759.4988</p>
                     </div>
 
                     <div>
-                        <i class="fa fa-envelope"></i>
+                        <i className="fa fa-envelope"></i>
                         <p><Link to="//mailto:lynguyenngocduy123@gmail.com">lynguyenngocduy123@gmail.com</Link></p>
                     </div>
 
                 </div>
 
-                <div class="footer-right">
+                <div className="footer-right">
 
-                    <p class="footer-company-about">
+                    <p className="footer-company-about">
                         <span>About the company</span>
                         Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
                     </p>
 
-                    <div class="footer-icons">
-                        <Link to="https://www.facebook.com/hanakura.tomo"><i class="fa fa-facebook"></i></Link>
-                        <Link to="/"><i class="fa fa-twitter"></i></Link>
-                        <Link to="/"><i class="fa fa-linkedin"></i></Link>
-                        <Link to="/"><i class="fa fa-github"></i></Link>
+                    <div className="footer-icons">
+                        <Link to="https://www.facebook.com/hanakura.tomo"><i className="fa fa-facebook"></i></Link>
+                        <Link to="/"><i className="fa fa-twitter"></i></Link>
+                        <Link to="/"><i className="fa fa-linkedin"></i></Link>
+                        <Link to="/"><i className="fa fa-github"></i></Link>
 
                     </div>
 
